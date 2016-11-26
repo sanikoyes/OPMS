@@ -40,6 +40,8 @@
               <option value="5">无法重现</option>
               <option value="6">延期处理</option>
               <option value="7">不予解决</option>
+              <option value="8">关闭</option>
+              <option value="9">问题重现</option>
             </select>
             <p></p>
             <textarea id="cnote" placeholder="备注说明" style="height:90px;" class="form-control"></textarea>

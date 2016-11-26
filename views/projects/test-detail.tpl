@@ -19,13 +19,19 @@
     <!-- header section end-->
     <!-- page heading start-->
     <div class="page-heading">
-      <h3> 测试管理 </h3>
+      <h3> BUG - {{.test.Name}} </h3>
       <ul class="breadcrumb pull-left">
         <li> <a href="/user/show/{{.LoginUserid}}">OPMS</a> </li>
-        <li> <a href="/project/test/{{.project.Id}}">{{.project.Name}}</a> </li>
-        <li class="active"> Bug </li>
+        <li> <a href="/project/bug/{{.project.Id}}">{{.project.Name}}</a> </li>
+        <li> <a href="/project/test/{{.project.Id}}">Bug</a> </li>
       </ul>
-      <div class="pull-right"><a href="/project/team/{{.project.Id}}" class="btn btn-success">团队</a> <a href="/project/need/{{.project.Id}}" class="btn btn-success">需求</a> <a href="/project/task/{{.project.Id}}" class="btn btn-success">任务</a> <a href="/project/test/{{.project.Id}}" class="btn btn-success">Bug</a> <a href="/project/chart/{{.project.Id}}" class="btn btn-warning">报表</a></div>
+      <div class="pull-right">
+        <a href="/project/team/{{.project.Id}}" class="btn btn-success">团队</a>
+        <a href="/project/need/{{.project.Id}}" class="btn btn-success">需求</a>
+        <a href="/project/task/{{.project.Id}}" class="btn btn-success">任务</a>
+        <a href="/project/test/{{.project.Id}}" class="btn btn-success">Bug</a>
+        <a href="/project/chart/{{.project.Id}}" class="btn btn-warning">报表</a>
+        <a href="#acceptModal" data-toggle="modal" data-id="{{.test.Id}}" class="btn btn-warning">指派</a>
     </div>
     <div class="clearfix"></div>
     <!-- page heading end-->
@@ -52,7 +58,9 @@
 					<a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 4}}active{{end}}" data-id="{{.test.Id}}" data-status="4">已解决</a>&nbsp; 
 					<a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 5}}active{{end}}" data-id="{{.test.Id}}" data-status="5">无法重现</a>&nbsp; 
 					<a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 6}}active{{end}}" data-id="{{.test.Id}}" data-status="6">延期处理</a>&nbsp; 
-					<a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 7}}active{{end}}" data-id="{{.test.Id}}" data-status="7">不予解决</a>&nbsp; 
+          <a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 7}}active{{end}}" data-id="{{.test.Id}}" data-status="7">不予解决</a>&nbsp; 
+          <a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 8}}active{{end}}" data-id="{{.test.Id}}" data-status="8">关闭</a>&nbsp; 
+					<a href="javascript:;" class="btn p-follow-btn js-test-status {{if eq .test.Status 9}}active{{end}}" data-id="{{.test.Id}}" data-status="9">问题重现</a>&nbsp; 
 					
 					</div>
                 </div>
@@ -127,5 +135,13 @@
   <!-- main content end-->
 </section>
 {{template "inc/foot.tpl" .}}
+{{template "inc/test-dialog.tpl" .}}
+<script>
+$(function(){
+  $('#acceptModal').on('show.bs.modal', function (e) {
+    $('#testid').val($(e.relatedTarget).attr('data-id'))
+  });
+})
+</script>
 </body>
 </html>

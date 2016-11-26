@@ -144,6 +144,9 @@ func (this *ShowTestProjectController) Get() {
 	project, _ := GetProject(test.Projectid)
 	this.Data["project"] = project
 
+	_, _, teams := ListProjectTeam(test.Projectid, 1, 100)
+	this.Data["teams"] = teams
+
 	need, _ := GetProjectNeeds(test.Needsid)
 	this.Data["need"] = need
 
@@ -170,7 +173,7 @@ func (this *AjaxStatusTestController) Post() {
 		return
 	}
 	status, _ := this.GetInt("status")
-	if status <= 0 || status >= 8 {
+	if status <= 0 || status >= 10 {
 		this.Data["json"] = map[string]interface{}{"code": 0, "message": "请选择操作状态"}
 		this.ServeJSON()
 		return

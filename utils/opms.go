@@ -134,6 +134,10 @@ func GetTestStatus(status int) string {
 		txt = "延期处理"
 	case 7:
 		txt = "不予解决"
+	case 8:
+		txt = "关闭"
+	case 9:
+		txt = "问题重现"
 	}
 	return txt
 }

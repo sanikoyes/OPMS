@@ -25,6 +25,8 @@
           <option value="5" {{if eq "5" .condArr.status}}selected{{end}}>无法重现</option>
           <option value="6" {{if eq "6" .condArr.status}}selected{{end}}>延期处理</option>
           <option value="7" {{if eq "7" .condArr.status}}selected{{end}}>不予解决</option>
+          <option value="8" {{if eq "7" .condArr.status}}selected{{end}}>关闭</option>
+          <option value="9" {{if eq "7" .condArr.status}}selected{{end}}>问题重现</option>
         </select>
         <select name="acceptid" class="form-control">
           <option value="">指派给</option>          
